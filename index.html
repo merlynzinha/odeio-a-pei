@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura na Floresta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .option {
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Aventura na Floresta</h1>
+    <p id="story-text"></p>
+    <div id="options"></div>
+    
+    <script>
+        const story = [
+            {
+                text: "Você está em uma floresta densa e vê um caminho à sua frente. O que você faz?",
+                options: [
+                    { text: "Seguir o caminho para a esquerda", nextStory: 1 },
+                    { text: "Seguir o caminho para a direita", nextStory: 2 }
+                ]
+            },
+            {
+                text: "Você encontrou uma clareira linda com flores coloridas. De repente, você vê um coelho. O que você faz?",
+                options: [
+                    { text: "Tentar pegar o coelho", nextStory: 3 },
+                    { text: "Apenas observar o coelho", nextStory: 4 }
+                ]
+            },
+            {
+                text: "Você se depara com um rio que atravessa a floresta. É raso, mas a corrente é forte. O que você faz?",
+                options: [
+                    { text: "Tentar atravessar o rio", nextStory: 5 },
+                    { text: "Procurar uma ponte", nextStory: 6 }
+                ]
+            },
+            {
+                text: "O coelho escapuliu rapidamente. Você se sente desapontado, mas decide explorar mais a floresta.",
+                options: [
+                    { text: "Continuar explorando", nextStory: 0 }
+                ]
+            },
+            {
+                text: "Enquanto observa o coelho, você ouve um canto de passarinho. É relaxante. Você decide simplesmente aproveitar o momento.",
+                options: [
+                    { text: "Voltar para o caminho anterior", nextStory: 0 }
+                ]
+            },
+            {
+                text: "Você conseguiu atravessar, mas seus sapatos ficaram encharcados. Você avista uma fogueira ao longe. O que você faz?",
+                options: [
+                    { text: "Ir até a fogueira", nextStory: 7 },
+                    { text: "Voltar para o lado da floresta que já conhece", nextStory: 0 }
+                ]
+            },
+            {
+                text: "Após algum tempo procurando, você finalmente encontra uma ponte. Atravessando a ponte, você avista uma casa.",
+                options: [
+                    { text: "Entrar na casa", nextStory: 8 },
+                    { text: "Continuar explorando a floresta", nextStory: 0 }
+                ]
+            },
+            {
+                text: "Você se aproximou da fogueira e encontrou um grupo de pessoas contando histórias ao redor dela. Você se junta a eles.",
+                options: [
+                    { text: "Contar sua própria história", nextStory: 9 }
+                ]
+            },
+            {
+                text: "A casa estava cheia de coisas estranhas, e você encontrou um livro antigo. O que você faz?",
+                options: [
+                    { text: "Ler o livro", nextStory: 10 },
+                    { text: "Sair rapidamente", nextStory: 0 }
+                ]
+            },
+            {
+                text: "Suas histórias encantaram todos ao redor da fogueira. Você fez novos amigos.",
+                options: [
+                    { text: "Continuar a amizade com eles", nextStory: 0 }
+                ]
+            },
+            {
+                text: "Você leu sobre feitiços e aventuras mágicas. Agora você vê a floresta de uma maneira diferente e decide explorá-la com novos olhos.",
+                options: [
+                    { text: "Explorar a floresta novamente", nextStory: 0 }
+                ]
+            }
+        ];
+
+        function displayStory(storyIndex) {
+            const storyText = document.getElementById('story-text');
+            const optionsDiv = document.getElementById('options');
+
+            storyText.textContent = story[storyIndex].text;
+            optionsDiv.innerHTML = '';
+
+            story[storyIndex].options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option.text;
+                button.onclick = () => displayStory(option.nextStory);
+                optionsDiv.appendChild(button);
+            });
+        }
+
+        // Começar a história
+        displayStory(0);
+    </script>
+
+</body>
+</html>
+
+            
